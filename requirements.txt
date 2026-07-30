@@ -12,3 +12,4 @@ pytest-cov
 pydantic
 python-dotenv
 pyserial
+dotenv
