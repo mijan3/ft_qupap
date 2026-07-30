@@ -1,8 +1,14 @@
-pandas
+streamlit
 numpy
+pandas
 matplotlib
 scikit-learn
 joblib
 qiskit
 qiskit-aer
 pycryptodome
+pytest
+pytest-cov
+pydantic
+python-dotenv
+pyserial

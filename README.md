@@ -1,3 +1,8 @@
 # ft_qupap
-conda create --name ft_qupapenv
-conda activate ft_qupapenv 
+
+```bash
+    conda create --name ft_qupapenv
+```
+```bash
+    conda activate ft_qupapenv 
+```
