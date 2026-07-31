@@ -6,3 +6,7 @@
 ```bash
     conda activate ft_qupapenv 
 ```
+
+```bash
+    python temp.py
+```
