@@ -2,29 +2,46 @@
 FT-QuPAP Storage Package
 ========================
 
-Persistent storage components for FT-QuPAP v5.1.
+Persistent and export-oriented storage components for the
+FT-QuPAP v5.1 capstone project.
 
-The storage package manages:
+The storage package supports:
 
-- Registered subscriber information
-- Used nonce digests for replay protection
-- Authentication-session lifecycle records
+- Pseudonymous subscriber registration
+- Authentication-request replay protection
+- Complete protocol-session tracking
 - Registration and trust-setup records
-- Authentication and experiment results
-- CSV files used by the dashboard and evaluation pipeline
+- Authentication-result persistence
+- CSV logging for dashboards and experiments
 
-Security-sensitive values must not be stored here, including:
+Storage files:
 
+    database/subscribers.json
+    database/used_nonces.json
+    database/demo_sessions.json
+    database/registration_records.json
+    data/demo/dashboard_results.csv
+    data/demo/demo_session_logs.csv
+
+Security requirements:
+
+The storage layer must never persist:
+
+- Raw IMSI values
 - ML-DSA private keys
 - ML-KEM private keys
 - ML-KEM shared secrets
-- Derived K_auth and K_ctrl session keys
+- Derived K_auth or K_ctrl keys
 - Raw authentication nonces
-- Raw confidential authentication payloads
+- Raw KMAC authentication tags
+- Raw ML-KEM ciphertexts
+- Decrypted control schedules
 - Quantum state vectors
+- Confidential authentication payloads
 
-Only validated protocol metadata, cryptographic digests, measurements,
-decisions, and non-secret public information should be persisted.
+Only pseudonymous identities, public metadata, cryptographic digests,
+protocol measurements, deterministic decisions, GP outputs, retry
+evidence, and timing information may be stored.
 """
 
 from __future__ import annotations
@@ -54,33 +71,35 @@ from .subscriber_database import (
 
 
 STORAGE_PACKAGE_VERSION = "5.1.0"
+PROTOCOL_VERSION = "FT-QuPAP-v5.1"
 
 
 __all__ = [
     # Package metadata
     "STORAGE_PACKAGE_VERSION",
+    "PROTOCOL_VERSION",
 
-    # Subscriber storage
+    # Subscriber database
     "SubscriberDatabase",
     "SubscriberRecord",
 
-    # Replay-protection storage
+    # Nonce and replay protection
     "NonceDatabase",
     "NonceRecord",
     "NonceReplayError",
 
-    # Authentication-session storage
+    # Protocol-session database
     "SessionDatabase",
     "SessionRecord",
 
-    # Registration and trust-setup storage
+    # Registration and trust setup
     "RegistrationRepository",
     "RegistrationRecord",
 
-    # Authentication-result storage
+    # Authentication results
     "ResultRepository",
     "AuthenticationResultRecord",
 
-    # CSV experiment and dashboard logging
+    # CSV logging
     "CSVLogger",
 ]
