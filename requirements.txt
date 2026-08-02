@@ -1,15 +1,38 @@
-streamlit
-numpy
-pandas
-matplotlib
-scikit-learn
-joblib
-qiskit
-qiskit-aer
-pycryptodome
-pytest
-pytest-cov
-pydantic
-python-dotenv
-pyserial
-dotenv
+# FT-QuPAP Capstone Demonstrator
+# Python 3.10+ is required by scripts/setup_environment.py.
+#
+# Install:
+#   python -m pip install --upgrade pip setuptools wheel
+#   python -m pip install -r requirements.txt
+#
+# Version policy:
+# - Exact pins are used where the project depends on specific standardized
+#   algorithm/module names.
+# - Compatible ranges are used for the scientific and dashboard stack.
+
+# Dashboard and interactive charts
+streamlit>=1.40,<2.0
+plotly>=5.24,<7.0
+
+# Configuration
+python-dotenv>=1.0,<2.0
+
+# Data processing, machine learning, and exported figures
+numpy>=2.0,<3.0
+pandas>=2.2,<3.0
+scikit-learn>=1.5,<2.0
+joblib>=1.4,<2.0
+matplotlib>=3.8,<4.0
+
+# Classical and post-quantum cryptography
+cryptography>=42,<47
+pycryptodome>=3.20,<4.0
+pqcrypto==0.3.4
+
+# Representative Steane-code circuit validation
+qiskit>=1.4,<3.0
+qiskit-aer==0.17.2
+
+# Notebook execution and development
+jupyterlab>=4.2,<5.0
+ipykernel>=6.29,<8.0
